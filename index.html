@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Para Mi Amor 💖</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff99cc, #ff4d94);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        #mensaje {
+            text-align: center;
+            color: white;
+            font-family: 'Arial', cursive;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .corazon {
+            position: absolute;
+            font-size: 30px;
+            animation: flotar 2s ease-out;
+            opacity: 0;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body onclick="crearCorazon(event)">
+    <div id="mensaje">
+        <h1>¡Hola Mi Amor! 💝</h1>
+        <p>Cada vez que haces clic...</p>
+        <p>...aparece todo mi cariño por ti</p>
+        <p>❤️❤️❤️</p>
+        <p style="font-size: 12px;">(Haz clic en cualquier parte)</p>
+    </div>
+
+    <script>
+        function crearCorazon(e) {
+            // Crear corazón
+            const corazon = document.createElement('div');
+            corazon.className = 'corazon';
+            corazon.innerHTML = '❤️';
+            corazon.style.left = e.clientX + 'px';
+            corazon.style.top = e.clientY + 'px';
+            document.body.appendChild(corazon);
+
+            // Efecto adicional después de 5 clics
+            if (Math.random() < 0.2) {
+                const mensajeExtra = ["Eres mi sol", "Te amo infinito", "Mi vida eres tú"][Math.floor(Math.random() * 3)];
+                const mensaje = document.createElement('div');
+                mensaje.style.color = '#fff';
+                mensaje.style.position = 'absolute';
+                mensaje.style.left = e.clientX + 'px';
+                mensaje.style.top = e.clientY + 50 + 'px';
+                mensaje.style.animation = 'flotar 3s';
+                mensaje.textContent = mensajeExtra;
+                document.body.appendChild(mensaje);
+            }
+
+            // Eliminar elemento después de animación
+            setTimeout(() => {
+                corazon.remove();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
